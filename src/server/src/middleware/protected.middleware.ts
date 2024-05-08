@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import type { ProtectedEndpointOptions, TokenData } from '@/types'
-import jwt from 'jsonwebtoken'
+import jwt, { JsonWebTokenError } from 'jsonwebtoken'
 import { db } from '../utils/database.server'
 export const protectedEndpoint = (options?: ProtectedEndpointOptions) => {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -27,8 +27,9 @@ export const protectedEndpoint = (options?: ProtectedEndpointOptions) => {
       }
       next()
     } catch (err) {
-      console.log(err)
-      return res.sendStatus(403)
+      if (err instanceof JsonWebTokenError)
+        return res.status(400).json({ error: 'Invalid token provided' });
+      return res.sendStatus(500);
     }
   }
 }

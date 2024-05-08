@@ -5,7 +5,7 @@
   "scripts": {
     "start": "concurrently 'npm:start:client' 'npm:start:server'",
     "dev": "concurrently 'npm:dev:client' 'npm:dev:server'",
-    "start:client": "vite preview --port 8080 --host",
+    "start:client": "vite preview --port 80 --host",
     "start:server": "node ./dist",
     "dev:client": "vite",
     "dev:server": "nodemon --exec ts-node src/server/src/index.ts",

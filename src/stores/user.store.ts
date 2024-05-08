@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { useAuthStore } from "./auth.store";
 import axios from "axios";
-import type { User } from "@/server/src/types";
 
 const BASE_URL = window.location.origin;
 export const useUserStore = defineStore('user', {

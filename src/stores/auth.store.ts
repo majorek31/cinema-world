@@ -6,7 +6,7 @@ export const useAuthStore = defineStore('auth', {
   state() {
     return {
       token: window.localStorage.getItem('token'),
-      isLoggedIn: window.localStorage.getItem('token') !== null ? true : false,
+      isLoggedIn: window.localStorage.getItem('token') != null ? true : false
     }
   },
   actions: {
@@ -44,8 +44,8 @@ export const useAuthStore = defineStore('auth', {
     },
     logout() {
       this.token = null;
-      window.localStorage.removeItem('token');
       this.isLoggedIn = false;
+      window.localStorage.removeItem('token');
     }
   }
 });

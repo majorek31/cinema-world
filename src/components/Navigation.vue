@@ -16,7 +16,7 @@
                         <RouterLink to="/login" class="button is-primary" v-if="!authStore.isLoggedIn">
                             <strong>Zaloguj się</strong>
                         </RouterLink>
-                        <b-dropdown icon-right="user" position="is-bottom-left" v-else v-if="isLoaded">
+                        <b-dropdown icon-right="user" position="is-bottom-left" @click.prevent="updateUser" v-else>
                             <template #trigger="{ active }">
                                 <b-button type="is-text" icon-right="user"/>
                             </template>
@@ -54,16 +54,23 @@ export default {
     computed: {
         ...mapStores(useAuthStore, useUserStore)
     },
-    async created() {
-        const response = await this.userStore.getUserInfo();
-        if (response.error) {
-            this.isLoaded = true;
-            return this.$buefy.notification.open(response.data);
+    methods: {
+        async updateUser() {
+            if (!this.authStore.isLoggedIn)
+                return;
+            const response = await this.userStore.getUserInfo();
+            if (response.error && this.authStore.isLoggedIn) {
+                this.isLoaded = true;
+                return this.$buefy.notification.open(response.data);
+            }
+            this.user = response.data;
         }
-        this.user = response.data;
-        console.log(this.user);
+    },
+    async created() {
+        if (!this.authStore.isLoggedIn)
+            return this.isLoaded = true;
+        await this.updateUser();
         this.isLoaded = true;
     }
-
 }
 </script>

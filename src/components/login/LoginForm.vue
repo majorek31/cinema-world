@@ -45,8 +45,10 @@ export default {
                 message: response.data
             });
             loading.close();
-            if (!response.error)
+            if (!response.error) {
                 this.$router.push("/")
+            }
+            
         }
     }
 }

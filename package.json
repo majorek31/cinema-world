@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "concurrently 'npm:start:client' 'npm:start:server'",
     "dev": "concurrently 'npm:dev:client' 'npm:dev:server'",
+    "start:client": "npm run preview",
+    "start:server": "node ./dist",
     "dev:client": "vite",
     "dev:server": "nodemon --exec ts-node src/server/src/index.ts",
     "build": "npm run build:client && npm run build:server",

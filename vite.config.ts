@@ -22,6 +22,7 @@ export default defineConfig({
     }
   },
   server: {
+    port: Number(process.env.PORT),
     proxy: {
       '/api': {
         target: 'http://localhost:3000',

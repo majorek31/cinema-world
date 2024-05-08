@@ -1,8 +1,8 @@
-import { Router } from "express";
+import { Router } from 'express'
 import { ApiRoute } from './api'
 
-const router: Router = Router();
+const router: Router = Router()
 
-router.use('/api', ApiRoute);
+router.use('/api', ApiRoute)
 
 export default router

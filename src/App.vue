@@ -6,7 +6,7 @@ import Navigation from '@/components/Navigation.vue'
 <template>
   <header>
     <div class="wrapper">
-      <Navigation/>
+      <Navigation />
     </div>
   </header>
 

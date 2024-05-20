@@ -1,14 +1,22 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { RouterView, useRouter } from 'vue-router'
 import Navigation from '@/components/Navigation.vue'
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <Navigation />
+      <Suspense>
+        <Navigation />
+      </Suspense>
     </div>
   </header>
 
-  <RouterView />
+  <RouterView v-slot="{ Component }">
+    <Suspense>
+      <template #default>
+        <Component :is="Component" :key="$route.path"></Component>
+      </template>
+    </Suspense>
+  </RouterView>
 </template>

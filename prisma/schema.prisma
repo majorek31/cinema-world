@@ -12,14 +12,34 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model User {
-  id Int @id @default(autoincrement())
-  email String @unique
-  role Role @default(USER)
-  createdAt DateTime @default(now())
-  username String @unique
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+  username     String   @unique
   passwordHash String
 }
+
+model Movie {
+  id                  Int      @id @default(autoincrement())
+  title               String
+  description         String
+  genre String
+  releaseDate Int
+  mugshotUrl String   @default("/unknown.avif")
+  rating Float
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  email String
+  message     String
+  created_at  DateTime @default(now())
+  hasBeenRead Boolean @default(false)
+}
+
 enum Role {
   USER
   ADMIN

@@ -6,11 +6,21 @@ interface User {
   registration_date: Date
   role: string
 }
+interface Movie {
+  id: number
+  title: string
+  rating: number
+  mugshotUrl: string
+}
 interface TokenData {
   user_id: number
 }
 interface LoginResponse {
   token: string
+}
+interface MovieResponse {
+  count: number
+  movies: Movie[]
 }
 interface LoginRequest extends Express.Request {
   body: {

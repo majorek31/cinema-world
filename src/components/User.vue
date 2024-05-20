@@ -1,6 +1,6 @@
 <script lang="ts">
-import { useAuthStore } from '@/stores/auth.store'
-import { mapStores } from 'pinia'
+import { useAuthStore } from '@/stores/auth.store';
+import { mapStores } from 'pinia';
 export default {
   computed: {
     ...mapStores(useAuthStore)

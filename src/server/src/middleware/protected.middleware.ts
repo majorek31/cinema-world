@@ -28,8 +28,8 @@ export const protectedEndpoint = (options?: ProtectedEndpointOptions) => {
       next()
     } catch (err) {
       if (err instanceof JsonWebTokenError)
-        return res.status(400).json({ error: 'Invalid token provided' });
-      return res.sendStatus(500);
+        return res.status(400).json({ error: 'Invalid token provided' })
+      return res.sendStatus(500)
     }
   }
 }

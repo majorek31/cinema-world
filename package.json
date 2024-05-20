@@ -7,7 +7,7 @@
     "dev": "concurrently 'npm:dev:client' 'npm:dev:server'",
     "start:client": "vite preview --port 80 --host",
     "start:server": "node ./dist",
-    "dev:client": "vite",
+    "dev:client": "vite --host",
     "dev:server": "nodemon --exec ts-node src/server/src/index.ts",
     "build": "npm run build:client && npm run build:server",
     "build:server": "tsc -p ./src/server/tsconfig.json",

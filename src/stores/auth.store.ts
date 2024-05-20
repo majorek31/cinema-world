@@ -1,12 +1,14 @@
 import axios from 'axios'
 import { defineStore } from 'pinia'
+import type { User } from '@/server/src/types';
+import { useRouter } from 'vue-router'
 
 const BASE_URL = window.location.origin
 export const useAuthStore = defineStore('auth', {
   state() {
     return {
       token: window.localStorage.getItem('token'),
-      isLoggedIn: window.localStorage.getItem('token') != null ? true : false
+      isLoggedIn: window.localStorage.getItem('token') != null ? true : false,
     }
   },
   actions: {
@@ -17,10 +19,10 @@ export const useAuthStore = defineStore('auth', {
             email: credentials.email,
             password: credentials.password
           }
-        })
+        });
         this.token = response.data.token
         window.localStorage.setItem('token', response.data.token)
-        this.isLoggedIn = true
+        this.isLoggedIn = true;
         return { error: false, data: 'Zalogowano pomyślnie' }
       } catch (err: any) {
         if (err.response.status == 404)
@@ -41,9 +43,11 @@ export const useAuthStore = defineStore('auth', {
       }
     },
     logout() {
-      this.token = null
-      this.isLoggedIn = false
-      window.localStorage.removeItem('token')
+      this.token = null;
+      this.isLoggedIn = false;
+      window.localStorage.removeItem('token');
+      // @ts-ignore
+      this.router.push('/login');
     }
   }
 })

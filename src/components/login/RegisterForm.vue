@@ -2,7 +2,7 @@
   <section>
     <form @submit.prevent="register">
       <b-field label="E-Mail" label-position="inside">
-        <b-input type="email" v-model="email" required message="test"></b-input>
+        <b-input type="email" v-model="email" required validation-message="Wpisz prawidłowy adres email"></b-input>
       </b-field>
       <b-field label="Hasło" label-position="inside">
         <b-input type="password" password-reveal v-model="password" required></b-input>

@@ -5,7 +5,8 @@
     </template>
     <template #start>
       <b-navbar-item tag="RouterLink" to="/">Główna</b-navbar-item>
-      <b-navbar-item tag="RouterLink" to="/about">Repertuar</b-navbar-item>
+      <b-navbar-item tag="RouterLink" to="/contact">Kontakt</b-navbar-item>
+      <!-- <b-navbar-item tag="RouterLink" to="/about">Repertuar</b-navbar-item> -->
     </template>
     <template #end>
       <b-navbar-item tag="div">
@@ -26,11 +27,11 @@
               <b-dropdown-item aria-role="listitem" class="has-icon-right">
                 <b>Witaj, {{ user.username }}</b>
               </b-dropdown-item>
-              <b-dropdown-item aria-role="listitem" class="has-icon-right">
-                <RouterLink class="has-text-black" to="account">Moje konto</RouterLink>
+              <b-dropdown-item aria-role="listitem" class="has-icon-right" tag="RouterLink" to="account">
+                <RouterLink class="has-text-black" to="/account">Moje konto</RouterLink>
               </b-dropdown-item>
-              <b-dropdown-item aria-role="listitem" class="has-icon-right">
-                <a class="has-text-black" @click.prevent="authStore.logout">Wyloguj się</a>
+              <b-dropdown-item aria-role="listitem" tag="a" class="has-icon-right" @click="authStore.logout">
+                <a class="has-text-black" >Wyloguj się</a>
               </b-dropdown-item>
             </b-dropdown>
           </template>
@@ -40,7 +41,6 @@
     </template>
   </b-navbar>
 </template>
-
 <script lang="ts">
 import { useAuthStore } from '@/stores/auth.store'
 import { useUserStore } from '@/stores/user.store'

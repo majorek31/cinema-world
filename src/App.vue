@@ -17,6 +17,9 @@ import Navigation from '@/components/Navigation.vue'
       <template #default>
         <Component :is="Component" :key="$route.path"></Component>
       </template>
+      <template #fallback>
+        <div>Loading...</div>
+      </template>
     </Suspense>
   </RouterView>
 </template>

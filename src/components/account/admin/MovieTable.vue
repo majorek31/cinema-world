@@ -23,9 +23,10 @@
 </template>
 
 <script setup lang="ts">
+import { useAuthStore } from '@/stores/auth.store';
 import { useMovieStore } from '@/stores/movie.store';
+import axios from 'axios';
 import type { BDialogConfig } from 'buefy/src/types/components';
-
 const movieStore = useMovieStore();
 let movieId = 0;
 const dialogConfig = {
@@ -34,7 +35,11 @@ const dialogConfig = {
     message: "Czy napewno chcesz usunąc ten film?",
     type: 'is-danger',
     async onConfirm(value, dialog) {
-        console.log(movieId);
+        await axios.delete("/api/movie/" + movieId, { 
+            headers: {
+                Authorization: 'Bearer: ' + useAuthStore().token
+            }
+        });
     },
 } as BDialogConfig
 const movies = (await movieStore.getAllMovies()).data.movies;

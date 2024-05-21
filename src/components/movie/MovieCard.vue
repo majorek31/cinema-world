@@ -22,7 +22,7 @@
                 ></b-rate>
                 <div class="buttons">
                     <!-- <div class="button" v-if="user && user.role == 'ADMIN'">Edytuj</div> -->
-                    <div class="button is-primary" @click="authStore.isLoggedIn ? undefined : $router.push('/login')">Kup bilet</div>
+                    <div class="button is-primary" @click="authStore.isLoggedIn ? $router.push(`/movie/${movie.id}/buy`) : $router.push('/login')">Kup bilet</div>
                 </div>
             </div>
         </div>
@@ -42,7 +42,6 @@ const dialogData = {
     onConfirm(value, dialog) {
         console.log(value);
     },
-    message: "Bój się mnie",
     canCancel: true,
     type: 'is-danger'
 } as BDialogConfig

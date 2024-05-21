@@ -9,6 +9,7 @@ import MovieView from '@/views/movie/MovieView.vue';
 import MovieEditView from '@/views/movie/MovieEditView.vue';
 import MovieSingle from '@/views/movie/MovieSingle.vue';
 import MovieCreate from '@/views/movie/MovieCreate.vue';
+import MovieBuy from '@/views/movie/MovieBuy.vue';
 
 import { useAuthStore } from '@/stores/auth.store'
 import { useUserStore } from '@/stores/user.store'
@@ -72,7 +73,14 @@ const router = createRouter({
           meta: {
             requireAuth: true,
             requireAdmin: true
-          },
+          }
+        },
+        {
+          path: 'buy',
+          component: MovieBuy,
+          meta: {
+            requireAuth: true,
+          }
         }
       ]
       // children: [

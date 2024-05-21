@@ -70,4 +70,18 @@ router.put("/", protectedEndpoint({requiresAdmin: true}), async (req, res) => {
     }
 });
 
+router.delete("/:id", protectedEndpoint({requiresAdmin: true}), async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        await db.movie.delete({
+            where: {
+                id: id
+            }
+        });
+        return res.sendStatus(200);
+    } catch (error) {
+        return res.sendStatus(400);
+    }
+});
+
 export const MovieRoute = router;

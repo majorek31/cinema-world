@@ -16,6 +16,15 @@
                     </b-field>
                     <p :class="error ? 'has-text-danger' : 'has-text-success'">{{ info }}</p>
                 </form>
+                <div class="is-centered has-text-centered">
+                    <h2 class="title">FAQ</h2>
+                    <p class="subtitle">
+                        <a href="https://github.com/majorek31/cinema-world">Kod strony</a>
+                    </p>
+                    <p class="subtitle">
+                        <a href="/schema.png">Schemat bazy danych</a>
+                    </p>
+                </div>
           </div>
         </div>
       </div>

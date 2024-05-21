@@ -20,24 +20,36 @@ model User {
   createdAt    DateTime @default(now())
   username     String   @unique
   passwordHash String
+  Ticket       Ticket[]
 }
 
 model Movie {
-  id                  Int      @id @default(autoincrement())
-  title               String
-  description         String
-  genre String
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  genre       String
   releaseDate Int
-  mugshotUrl String   @default("/unknown.avif")
-  rating Float
+  mugshotUrl  String   @default("/unknown.avif")
+  rating      Float
+  Ticket      Ticket[]
 }
 
 model Message {
-  id         Int      @id @default(autoincrement())
-  email String
+  id          Int      @id @default(autoincrement())
+  email       String
   message     String
   created_at  DateTime @default(now())
-  hasBeenRead Boolean @default(false)
+  hasBeenRead Boolean  @default(false)
+}
+
+model Ticket {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  movie      Movie    @relation(fields: [movieId], references: [id])
+  created_at DateTime @default(now())
+  when       DateTime
+  userId     Int
+  movieId    Int
 }
 
 enum Role {
